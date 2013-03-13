@@ -1,0 +1,50 @@
+#!/bin/bash
+#
+
+## running this script on a stock raspbian install should give a ready to use
+## radio setup (under development)
+
+# Install dependencies
+
+sudo apt-get install libmad0-dev libao-dev 
+
+# Clone relevant git repositories
+
+git clone https://github.com/jkramer/shell-fm
+
+git clone https://github.com/mmoller2k/pikeyd
+
+
+# Install shell-fm
+
+cd shell-fm
+make
+sudo make install
+
+# Install pikeyd
+
+#Install notes.
+#If you're using Raspbian wheezy add the folowing to /etc/modules:
+#uinput
+#i2c-dev
+
+#edit /etc/modprobe.d/raspi-blacklist.conf
+#and remove or comment out
+#blacklist i2c-bcm2708
+
+cd pikeyd
+make
+sudo make install
+
+## Symlink config files
+
+cd
+sudo ln -s  /home/pi/shell-fm.rc /home/pi/.shell-fm/shell-fm.rc
+sudo ln -s  /home/pi/pikeyd.conf /etc
+
+#### copy autorun script to relevant directory
+
+### finished, restart
+
+sudo reboot
+
