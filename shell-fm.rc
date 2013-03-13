@@ -1,3 +1,3 @@
 np-file = /tmp/now-playing
 np-file-format = %a - %t
-key0x6F= sudo /home/pi/info
+key0x6F= sudo /home/pi/NowPlaying
